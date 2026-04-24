@@ -25,46 +25,18 @@ system.set_window_mode("fullscreen")
 ------------------------------ Themes ----------------------------------------
 
 -- light theme:
-core.reload_module("colors.summer")
+core.reload_module("colors.tokyo-night")
 
 --------------------------- Key bindings -------------------------------------
 
--- key binding:
--- keymap.add { ["ctrl+escape"] = "core:quit" }
+-- key unbinds to avoid conflicits
+keymap.unbind("ctrl+shift+p", "core:find-command")
 
--- pass 'true' for second parameter to overwrite an existing binding
--- keymap.add({ ["ctrl+pageup"] = "root:switch-to-previous-tab" }, true)
--- keymap.add({ ["ctrl+pagedown"] = "root:switch-to-next-tab" }, true)
+-- key bindings:
+keymap.add { ["ctrl+t"] = "terminal:swap-drawer" }
+keymap.add { ["ctrl+shift+t"] = "terminal:open-tab" }
+keymap.add { ["ctrl+q"] = "core:find-command" }
 
-------------------------------- Fonts ----------------------------------------
-
--- customize fonts:
--- style.font = renderer.font.load(DATADIR .. "/fonts/FiraSans-Regular.ttf", 14 * SCALE)
--- style.code_font = renderer.font.load(DATADIR .. "/fonts/JetBrainsMono-Regular.ttf", 14 * SCALE)
---
--- DATADIR is the location of the installed Lite XL Lua code, default color
--- schemes and fonts.
--- USERDIR is the location of the Lite XL configuration directory.
---
--- font names used by lite:
--- style.font          : user interface
--- style.big_font      : big text in welcome screen
--- style.icon_font     : icons
--- style.icon_big_font : toolbar icons
--- style.code_font     : code
---
--- the function to load the font accept a 3rd optional argument like:
---
--- {antialiasing="grayscale", hinting="full", bold=true, italic=true, underline=true, smoothing=true, strikethrough=true}
---
--- possible values are:
--- antialiasing: grayscale, subpixel
--- hinting: none, slight, full
--- bold: true, false
--- italic: true, false
--- underline: true, false
--- smoothing: true, false
--- strikethrough: true, false
 
 ------------------------------ Plugins ----------------------------------------
 

@@ -8,5 +8,7 @@ This is my config that i use daily.
 
 [⏺] Uses
 - lpm (https://aur.archlinux.org/packages/lpm)
+- tokyo-night ( lpm install tokyo-night )
 - lsp_servers (https://github.com/lite-xl/lite-xl-lsp-servers)
+- terminal (https://github.com/adamharrison/lite-xl-terminal.git)
 
