@@ -1,13 +1,25 @@
 -- Modified init.lua config file
--- https://github.com/partiallywritten/configs-and-guides/tree/main/LITE-XL
+-- https://codeberg.org/partiallywritten/configs-and-guides/src/branch/main/LITE-XL
+print(">>> Running @partiallywritten's init.lua")
 
 local core = require "core"
 local keymap = require "core.keymap"
 local config = require "core.config"
 local style = require "core.style"
 
--- change these if needed
-local user_font = "/home/hirusha/.local/share/fonts/Fira_Code/FiraCode-Medium.ttf"
+-- helper function
+--    func_def: lua function
+--    func_args: expected function arguments in a table
+--    default: default function arguments in a table that are guaranteed to work
+local function safe_change(func_def, func_args, default_args)
+   local success, result = pcall(func_def, table.unpack(func_args))
+   if success then
+      return result
+   else
+      core.log("Safe Change Error: " .. result)
+      return func_def(table.unpack(default_args))
+   end
+end
 
 
 -- configs
@@ -15,7 +27,12 @@ config.fps = 30
 config.transitions = false
 
 -- font stuff
-style.font = renderer.font.load(user_font, 12, { antialiasing = "grayscale", hinting = "slight" })
+local user_font = "/home/hirusha/.local/share/fonts/Fira_Code/FiraCode-Medium.ttf"
+style.font = safe_change(
+      renderer.font.load,
+      {user_font, 12, { antialiasing = "grayscale", hinting = "slight" } },
+      {DATADIR .. "/fonts/FiraSans-Regular.ttf", 12, { antialiasing = "grayscale", hinting = "slight" } }
+   )
 style.code_font = style.font
 
 -- launch in an acceptable window
@@ -24,8 +41,11 @@ system.set_window_mode("fullscreen")
 
 ------------------------------ Themes ----------------------------------------
 
--- light theme:
-core.reload_module("colors.tokyo-night")
+safe_change(
+   core.reload_module,
+   { "colors.tokyo-night" },
+   { "colors.summer" }
+)
 
 --------------------------- Key bindings -------------------------------------
 
