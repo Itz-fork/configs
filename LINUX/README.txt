@@ -3,8 +3,13 @@
 
 
 (*) Programs:
-    - Firefox (using Betterfox + uBlock Origin)
-    - Brave (disable crypto wallet, turn off cards, turn off news and remove newtab search bar)
-    - Code (APC + tokyo night + VSCODE/settings.json)
-    - vlc or mpc-hc
-    - Install WARP while you're at it (WARP/README.txt)
+    - Browsers
+        - Brave: see BRAVE/README.txt for more info
+        - Firefox: use Betterfox + uBlock Origin
+    - Code
+        - lite-xl: see LITE-XL directory for more info
+        - VSCodium: APC + tokyo night + VSCODE/settings.json
+    - Video player: vlc 
+    - Terminal: alacritty (+ "Oh My Zsh!")
+    - Chat
+        - Telegram (https://telegram.org/)
