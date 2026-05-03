@@ -1,11 +1,14 @@
 -- Modified init.lua config file
 -- https://codeberg.org/partiallywritten/configs-and-guides/src/branch/main/LITE-XL
-print(">>> Running @partiallywritten's init.lua")
 
 local core = require "core"
 local keymap = require "core.keymap"
 local config = require "core.config"
 local style = require "core.style"
+local command = require "core.command"
+
+core.log(">>> Running @partiallywritten's init.lua \nSee: https://codeberg.org/partiallywritten/configs-and-guides/src/branch/main/LITE-XL")
+
 
 -- helper function
 --    func_def: lua function
@@ -16,7 +19,8 @@ local function safe_change(func_def, func_args, default_args)
    if success then
       return result
    else
-      core.log("Safe Change Error: " .. result)
+      core.log("[ERROR] Safe Change Error: " .. result)
+      command.perform("core:open-log")
       return func_def(table.unpack(default_args))
    end
 end
@@ -36,7 +40,11 @@ style.font = safe_change(
 style.code_font = style.font
 
 -- launch in an acceptable window
-system.set_window_mode("fullscreen")
+system.set_window_mode("maximized")
+
+-- spacing
+config.tab_type = "soft"
+config.indent_size = 4
 
 
 ------------------------------ Themes ----------------------------------------
@@ -74,7 +82,7 @@ config.ignore_files = {
    "^node_modules/", "^%.cache/", "^__pycache__/",
    -- files
    "%.pyc$",         "%.pyo$",       "%.exe$",        "%.dll$",   "%.obj$", "%.o$",
-   "%.a$",           "%.lib$",       "%.so$",         "%.dylib$", "%.ncb$", "%.sdf$",
+   "%.a$",           "%.lib$",       "%.directory$",         "%.dylib$", "%.ncb$", "%.sdf$",
    "%.suo$",         "%.pdb$",       "%.idb$",        "%.class$", "%.psd$", "%.db$",
-   "^desktop%.ini$", "^%.DS_Store$", "^%.directory$",
+   "^desktop%.ini$", "^%.DS_Store$",
 }
